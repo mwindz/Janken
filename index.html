@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Janken</title>
+  </head>
+
+  <body>
+    <script>
+      let userInput = "";
+      let testInput = "";
+      let userChoice = "";
+      let cpuChance = 0;
+      let cpuChoice = "";
+      let userScore = 0;
+      let cpuScore = 0;
+
+      function getUserInput() {
+
+        testInput = String(prompt("Please type 'rock', 'paper', or 'scissors'.")).toLowerCase();
+
+        if (testInput != "rock" && testInput != "paper" && testInput != "scissors") {
+
+          console.log("User input error.")
+	  getUserInput()
+
+        } else {
+
+          userChoice = String(testInput)[0].toUpperCase() + String(testInput.slice(1));
+
+        }
+      };  
+
+
+      function getCompChoice() {
+
+        cpuChance = Math.floor(Math.random() * 300);
+
+        if (cpuChance >= 200) {
+          cpuChoice = "Rock";
+        } else if (cpuChance >= 100) {
+          cpuChoice = "Paper";
+        } else {
+          cpuChoice = "Scissors";
+        }
+      }
+
+      function checkChoices(user, cpu) {
+
+        if (user === cpu) {
+           console.log("Stalemate; no winners; no points.");
+        } else if (user === "Rock") {
+	  if (cpu === "Paper") {
+	    console.log("CPU wins; gains one point.");
+	    cpuScore++;
+            console.log("Player Score: " + userScore +"\nCPU Score: " + cpuScore);
+          }
+          if (cpu === "Scissors") {
+            console.log("Player wins; gains one point.");
+            userScore++;
+            console.log("Player Score: " + userScore +"\nCPU Score: " + cpuScore);
+          }
+        } else if (user === "Paper") {
+          if (cpu === "Rock") {
+            console.log("Player wins; gains one point.");
+            userScore++;
+            console.log("Player Score: " + userScore +"\nCPU Score: " + cpuScore);
+          }
+          if (cpu === "Scissors") {
+            console.log("CPU wins; gains one point.");
+            cpuScore++;
+            console.log("Player Score: " + userScore +"\nCPU Score: " + cpuScore);
+          }
+        } else if (user === "Scissors") {
+          if (cpu === "Rock") {
+            console.log("CPU wins; gains one point.");
+            cpuScore++;
+            console.log("Player Score: " + userScore +"\nCPU Score: " + cpuScore);
+          }
+          if (cpu === "Paper") {
+            console.log("Player wins; gains one point.");
+            userScore++;
+            console.log("Player Score: " + userScore +"\nCPU Score: " + cpuScore);
+          }
+	}
+      }
+
+      function runGame() {
+        if (userScore === 5) {
+          console.log("Game over.  Player wins with a score of 5 - " + cpuScore + "!");
+        } else if (cpuScore === 5) {
+          console.log("Game over.  CPU wins with a score of 5 - " + userScore + "!");
+        } else {
+          getCompChoice();
+          getUserInput();
+          checkChoices(userChoice, cpuChoice);
+          runGame()
+        }
+      }
+
+      runGame();
+    </script>
+  </body>
+</html>
