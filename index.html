@@ -25,6 +25,7 @@
       let cpuChoice = "";
       let userScore = 0;
       let cpuScore = 0;
+      let retry = false;
 
       function getUserInput() {
 
@@ -99,8 +100,20 @@
       function runGame() {
         if (userScore === 5) {
           console.log("Game over.  Player wins with a score of 5 - " + cpuScore + "!");
+	  retry = confirm("Play again?");
+          if (retry === true) {
+            userScore = 0;
+            cpuScore = 0;
+            runGame();
+          }
         } else if (cpuScore === 5) {
           console.log("Game over.  CPU wins with a score of 5 - " + userScore + "!");
+          retry = confirm("Play again?");
+          if (retry === true) {
+            userScore = 0;
+            cpuScore = 0;
+            runGame();
+          }
         } else {
           getCompChoice();
           getUserInput();
