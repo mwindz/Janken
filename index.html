@@ -28,7 +28,52 @@
       let cpuScore = 0;
       let retry = false;
 
-      function getUserInput() {
+      const body = document.querySelector("body");
+
+      const btndiv = document.createElement("div");
+
+      const rockb = document.createElement("button");
+
+      rockb.textContent = "Rock";
+
+      const papeb = document.createElement("button");
+
+      papeb.textContent = "Paper";
+
+      const scisb = document.createElement("button");
+
+      scisb.textContent = "Scissors";
+
+      btndiv.appendChild(rockb);
+      btndiv.appendChild(papeb);
+      btndiv.appendChild(scisb);
+
+      body.appendChild(btndiv);
+
+      rockb.addEventListener("click", function() {
+        userChoice = "Rock";
+        runGame();
+      });
+
+      papeb.addEventListener("click", function() {
+        userChoice = "Paper";
+        runGame();
+      });
+
+      scisb.addEventListener("click", function() {
+        userChoice = "Scissors";
+        runGame();
+      });
+
+      
+
+      const resdiv = document.createElement("div");
+
+      resdiv.classList.add("result");
+
+
+
+/*    function getUserInput() {
 
         testInput = String(prompt("Please type 'rock', 'paper', or 'scissors'.")).toLowerCase();
 
@@ -42,7 +87,7 @@
           userChoice = String(testInput)[0].toUpperCase() + String(testInput.slice(1));
 
         }
-      };  
+      };  */
 
 
       function getCompChoice() {
@@ -60,18 +105,31 @@
 
       function checkChoices(user, cpu) {
 
+
+        const span = document.createElement("p");
+        const span2 = document.createElement("p");
+
         if (user === cpu) {
-           console.log("Stalemate; no winners; no points.");
+
+           span.textContent = ("Stalemate; no winners; no points.\n")
+           body.appendChild(span);
+           span2.textContent = ("Player Score: " + userScore + "\nCPU Score: " + cpuScore + "\n");
+           body.appendChild(span2);
+
         } else if (user === "Rock") {
 	  if (cpu === "Paper") {
-	    console.log("CPU wins; gains one point.");
+	    span.textContent = "CPU wins; gains one point.\n";
+            body.appendChild(span);     
 	    cpuScore++;
-            console.log("Player Score: " + userScore +"\nCPU Score: " + cpuScore);
+            span2.textContent = ("Player Score: " + userScore +"\nCPU Score: " + cpuScore + "\n");
+            body.appendChild(span2);
           }
           if (cpu === "Scissors") {
-            console.log("Player wins; gains one point.");
+            span.textContent = ("Player wins; gains one point.");
+            body.appendChild(span);
             userScore++;
-            console.log("Player Score: " + userScore +"\nCPU Score: " + cpuScore);
+            span2.textContent = ("Player Score: " + userScore +"\nCPU Score: " + cpuScore);
+            body.appendChild(span2);
           }
         } else if (user === "Paper") {
           if (cpu === "Rock") {
@@ -99,31 +157,45 @@
       }
 
       function runGame() {
+
+        const victory = document.createElement("h1");
+
         if (userScore === 5) {
-          console.log("Game over.  Player wins with a score of 5 - " + cpuScore + "!");
+          victory.textContent = ("Game over.  Player wins with a score of 5 - " + cpuScore + "!");
+          body.appendChild(victory);
 	  retry = confirm("Play again?");
           if (retry === true) {
             userScore = 0;
             cpuScore = 0;
-            runGame();
+            body.textContent = "";
+            body.appendChild(rockb);
+            body.appendChild(papeb);
+            body.appendChild(scisb);
           }
         } else if (cpuScore === 5) {
-          console.log("Game over.  CPU wins with a score of 5 - " + userScore + "!");
+          victory.textContent = ("Game over.  CPU wins with a score of 5 - " + userScore + "!");
+          body.appendChild(victory);
           retry = confirm("Play again?");
           if (retry === true) {
             userScore = 0;
             cpuScore = 0;
-            runGame();
+            body.textContent = ""
+            body.appendChild(rockb);
+            body.appendChild(papeb);
+            body.appendChild(scisb);;
           }
         } else {
           getCompChoice();
-          getUserInput();
           checkChoices(userChoice, cpuChoice);
-          runGame()
         }
+
+//      getCompChoice();
+//      getUserInput();
+//      checkChoices(userChoice, cpuChoice);
+//      runGame();
       }
 
-      runGame();
+//    runGame();
     </script>
   </body>
 </html>
