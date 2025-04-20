@@ -72,6 +72,8 @@
       resdiv.classList.add("result");
 
 
+  //The below function will probably be removed since deprecated
+
 
 /*    function getUserInput() {
 
@@ -133,25 +135,33 @@
           }
         } else if (user === "Paper") {
           if (cpu === "Rock") {
-            console.log("Player wins; gains one point.");
+            span.textContent = ("Player wins; gains one point.");
+            body.appendChild(span);
             userScore++;
-            console.log("Player Score: " + userScore +"\nCPU Score: " + cpuScore);
+            span2.textContent = ("Player Score: " + userScore +"\nCPU Score: " + cpuScore);
+            body.appendChild(span2);
           }
           if (cpu === "Scissors") {
-            console.log("CPU wins; gains one point.");
-            cpuScore++;
-            console.log("Player Score: " + userScore +"\nCPU Score: " + cpuScore);
+	    span.textContent = "CPU wins; gains one point.\n";
+            body.appendChild(span);     
+	    cpuScore++;
+            span2.textContent = ("Player Score: " + userScore +"\nCPU Score: " + cpuScore + "\n");
+            body.appendChild(span2);
           }
         } else if (user === "Scissors") {
           if (cpu === "Rock") {
-            console.log("CPU wins; gains one point.");
-            cpuScore++;
-            console.log("Player Score: " + userScore +"\nCPU Score: " + cpuScore);
+	    span.textContent = "CPU wins; gains one point.\n";
+            body.appendChild(span);     
+	    cpuScore++;
+            span2.textContent = ("Player Score: " + userScore +"\nCPU Score: " + cpuScore + "\n");
+            body.appendChild(span2);
           }
           if (cpu === "Paper") {
-            console.log("Player wins; gains one point.");
+            span.textContent = ("Player wins; gains one point.");
+            body.appendChild(span);
             userScore++;
-            console.log("Player Score: " + userScore +"\nCPU Score: " + cpuScore);
+            span2.textContent = ("Player Score: " + userScore +"\nCPU Score: " + cpuScore);
+            body.appendChild(span2);
           }
 	}
       }
